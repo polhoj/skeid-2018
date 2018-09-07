@@ -2,10 +2,10 @@ page 123456702 "CSD Seminar List"
 {
     PageType = List;
     SourceTable = "CSD Seminar";
-    Caption='Seminar list';
-    Editable=false;
-    CardPageId=123456701;
-    UsageCategory=Lists;
+    Caption = 'Seminar list';
+    Editable = false;
+    CardPageId = 123456701;
+    UsageCategory = Lists;
 
     layout
     {
@@ -13,27 +13,27 @@ page 123456702 "CSD Seminar List"
         {
             repeater(Group)
             {
-                field("No.";"No.")
-                {
-                    
-                }
-                field(Name;Name)
+                field("No."; "No.")
                 {
 
                 }
-                field("Seminar Duration";"Seminar Duration")
+                field(Name; Name)
                 {
 
                 }
-                field("Seminar Price";"Seminar Price")
+                field("Seminar Duration"; "Seminar Duration")
                 {
 
                 }
-                field("Minimum Participants";"Minimum Participants")
+                field("Seminar Price"; "Seminar Price")
                 {
 
                 }
-                field("Maximum Participants";"Maximum Participants")
+                field("Minimum Participants"; "Minimum Participants")
+                {
+
+                }
+                field("Maximum Participants"; "Maximum Participants")
                 {
 
                 }
@@ -42,11 +42,11 @@ page 123456702 "CSD Seminar List"
         }
         area(FactBoxes)
         {
-            systempart("links";Links)
+            systempart("links"; Links)
             {
 
             }
-            systempart("notes";Notes)
+            systempart("notes"; Notes)
             {
 
             }
@@ -55,23 +55,57 @@ page 123456702 "CSD Seminar List"
 
     actions
     {
-        
+
         area(Navigation)
         {
-            group("&Seminar") 
+            group("&Seminar")
             {
-                 action("Co&mments") 
-                 { 
-                     //RunObject=page "Seminar Comment Sheet"; 
-                     //RunPageLink = "Table Name"= const(Seminar), 
-                     // "No."=field("No."); 
-                     Image = Comment; 
-                     Promoted = true; 
-                     PromotedIsBig = true; 
-                     PromotedOnly = true; 
-                     }
-                      }
+                action("Co&mments")
+                {
+                    //RunObject=page "Seminar Comment Sheet"; 
+                    //RunPageLink = "Table Name"= const(Seminar), 
+                    // "No."=field("No."); 
+                    Image = Comment;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+                }
+                action("Ledger Entries")
+                {
+                    Caption = 'Ledger Entries';
+                    RunObject = page "CSD Seminar Ledger Entries";
+                    RunPageLink = "Seminar No." = field ("No.");
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    ShortcutKey = "Ctrl+F7";
+                    Image = WarrantyLedger;
+                }
+                // >> Lab 8 1-2 
+                action("&Registrations")
+                {
+                    Caption = '&Registrations';
+                    RunObject = page "CSD Seminar Registration List";
+                    RunPageLink = "Seminar No." = field ("No.");
+                    Image = Timesheet;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                }
+                // << Lab 8 1-2
+            }
         }
-        
+        // >> Lab 8-2 
+        area(Processing)
+        {
+            action("Seminar Registration")
+            {
+                RunObject = page "CSD Seminar Registration";
+                RunPageLink = "Seminar No." = field ("No.");
+                RunPageMode = Create;
+                Image = NewTimesheet;
+                Promoted = true;
+                PromotedCategory = New;
+            }
+        }
+        // << Lab 8-2
     }
 }

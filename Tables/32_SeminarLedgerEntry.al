@@ -155,7 +155,12 @@ table 123456732 "CSD Seminar Ledger Entry"
     keys
     {
         key(Key1;"Entry No.")
+        
         {
+        }
+        key(key2;"Document No.","Posting Date")
+        {
+            
         }
     }
 

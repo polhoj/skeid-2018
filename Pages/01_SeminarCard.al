@@ -2,7 +2,7 @@ page 123456701 "CSD Seminar Card"
 {
     PageType = Card;
     SourceTable = "CSD Seminar";
-    Caption='Seminar';
+    Caption = 'Seminar';
 
 
     layout
@@ -11,56 +11,56 @@ page 123456701 "CSD Seminar Card"
         {
             group(General)
             {
-                field("No.";"No.")
+                field("No."; "No.")
                 {
-                AssistEdit=true;
-                trigger OnAssistEdit();
-                begin
-                    if AssistEdit then
-                    CurrPage.Update;
+                    AssistEdit = true;
+                    trigger OnAssistEdit();
+                    begin
+                        if AssistEdit then
+                            CurrPage.Update;
                     end;
 
                 }
-                field(Name;Name)
+                field(Name; Name)
                 {
 
                 }
-                field("Search Name";"Search Name")
+                field("Search Name"; "Search Name")
                 {
 
                 }
-                field("Seminar Duration";"Seminar Duration")
+                field("Seminar Duration"; "Seminar Duration")
                 {
 
                 }
-                field("Minimum Participants";"Minimum Participants")
+                field("Minimum Participants"; "Minimum Participants")
                 {
 
                 }
-                field("Maximum Participants";"Maximum Participants")
+                field("Maximum Participants"; "Maximum Participants")
                 {
 
                 }
-                field(Blocked;Blocked)
+                field(Blocked; Blocked)
                 {
 
                 }
-                field("Last Date Modified";"Last Date Modified")
+                field("Last Date Modified"; "Last Date Modified")
                 {
 
                 }
             }
             group(Invoicing)
             {
-                field("Gen. Prod. Posting Group";"Gen. Prod. Posting Group")
+                field("Gen. Prod. Posting Group"; "Gen. Prod. Posting Group")
                 {
 
                 }
-                field("VAT prod. posting group";"VAT prod. posting group")
+                field("VAT prod. posting group"; "VAT prod. posting group")
                 {
 
                 }
-                field("Seminar Price";"Seminar Price")
+                field("Seminar Price"; "Seminar Price")
                 {
 
                 }
@@ -68,11 +68,11 @@ page 123456701 "CSD Seminar Card"
         }
         area(FactBoxes)
         {
-            systempart("links";Links)
+            systempart("links"; Links)
             {
 
             }
-            systempart("notes";Notes)
+            systempart("notes"; Notes)
             {
 
             }
@@ -83,22 +83,58 @@ page 123456701 "CSD Seminar Card"
     {
         area(Navigation)
         {
-            group("&Seminar") 
+            group("&Seminar")
             {
-                 action("Co&mments") 
-                 { 
-                     RunObject=page "CSD Seminar Comment Sheet"; 
-                     RunPageLink = "Table Name"= const(Seminar), 
-                     "No."=field("No."); 
-                     Image = Comment; 
-                     Promoted = true; 
-                     PromotedIsBig = true; 
-                     PromotedOnly = true; 
-                     }
-                      }
+                action("Co&mments")
+                {
+                    RunObject = page "CSD Seminar Comment Sheet";
+                    RunPageLink = "Table Name" = const (Seminar),
+                     "No." = field ("No.");
+                    Image = Comment;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+                }
+                action("Ledger Entries")
+                {
+                    Caption = 'Ledger Entries';
+                    RunObject = page "CSD Seminar Ledger Entries";
+                    RunPageLink = "Seminar No." = field ("No.");
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    ShortcutKey = "Ctrl+F7";
+                    Image = WarrantyLedger;
+                }
+                // >> Lab 8 1-2 
+                action("&Registrations")
+                {
+                    Caption = '&Registrations';
+                    RunObject = page "CSD Seminar Registration List";
+                    RunPageLink = "Seminar No." = field ("No.");
+                    Image = Timesheet;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                }
+                // << Lab 8 1-2
+            }
+
         }
+        //>> Lab 8 1-2 
+        area(Processing)
+        {
+            action("Seminar Registration")
+            {
+                RunObject = page "CSD Seminar Registration";
+                RunPageLink = "Seminar No." = field ("No.");
+                RunPageMode = Create;
+                Image = NewTimesheet;
+                Promoted = true;
+                PromotedCategory = New;
+            }
+        }
+        // << Lab 8 1-2
     }
-    
- 
-    
+
+
+
 }
